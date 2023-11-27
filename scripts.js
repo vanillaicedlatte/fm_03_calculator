@@ -53,28 +53,53 @@ operatorButtons.forEach(button => {
 
         if (operatorValue != "=") {
             const lastOperator = calculationArray[calculationArray.length - 2];
-            console.log(lastOperator);
             if (operators.includes(lastOperator) == true) {
                 calculationArray = calculationArray.slice(0,1);
                 calculationArray.push(operatorValue);
-                console.log(calculationArray);
             } else {
             calculationArray.push(operatorValue);
             }
             }
         if (operatorValue == "=") {
-            // let formula = calculationArray.join('');
-            function calculate(...num){
-                return calculationArray.join('')
-            }
-            console.log(calculate(calculationArray));
-            
+
+            letsDoMath(calculationArray);
+
         }
 
                 // Update the input element
                 currentInput = "";
     });
 })
+
+function letsDoMath(arr) {
+    let result = parseFloat(arr[0]); {
+        for (let i = 1; i < arr.length; i += 2) {
+            let operator = arr[i];
+            let operand = parseFloat(arr[i + 1]);
+        switch (operator) {
+            case '+':
+                result += operand;
+                break;
+            case '-':
+                result -= operand;
+                break;
+            case '*':
+                result *= operand;
+                break;
+            case '/':
+                result /= operand;
+                break;
+            default:
+                // Handle unexpected operators
+                break;
+        }
+    }
+    console.log(result);
+    document.querySelector(".input").setAttribute("value", result);
+    return result;
+}
+        }
+
 
 // clear button
 clearButton.addEventListener("click", function() {
